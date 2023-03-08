@@ -159,3 +159,27 @@ class TestAccountService(TestCase):
         # read_account = get_response.get_json()
 
         self.assertEqual(get_response.status_code, status.HTTP_404_NOT_FOUND)
+
+
+    def test_list_all_accounts(self):
+        """It should return a list of all accounts on the service"""
+
+        accounts = self._create_accounts(4)
+
+        resp = self.client.get(BASE_URL)
+
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        data = resp.get_json()
+        for idx, entry in enumerate(data):
+            self.assertEqual(entry["name"], accounts[idx].name)
+
+    def test_list_when_no_accounts(self):
+        """It should return an empty list if no accounts on the system"""
+
+        resp = self.client.get(BASE_URL)
+
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+
+        data = resp.get_json()
+
+        self.assertEqual(data, [])
