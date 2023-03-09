@@ -3,7 +3,9 @@ Werkzeug==2.2.2
 
 # Build dependencies
 Flask==2.2.2
+Flask-Cors
 Flask-SQLAlchemy==3.0.2
+Flask-Talisman
 psycopg2-binary==2.9.5
 python-dotenv==0.21.1
 
