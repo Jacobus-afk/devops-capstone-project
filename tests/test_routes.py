@@ -24,6 +24,8 @@ HTTPS_ENVIRON = {'wsgi.url_scheme': 'https'}
 ######################################################################
 #  T E S T   C A S E S
 ######################################################################
+
+
 class TestAccountService(TestCase):
     """Account Service Tests"""
 
@@ -138,7 +140,6 @@ class TestAccountService(TestCase):
         new_account = post_response.get_json()
         id = new_account["id"]
 
-
         get_response = self.client.get(
             f"{BASE_URL}/{id}"
         )
@@ -161,7 +162,6 @@ class TestAccountService(TestCase):
         # read_account = get_response.get_json()
 
         self.assertEqual(get_response.status_code, status.HTTP_404_NOT_FOUND)
-
 
     def test_list_all_accounts(self):
         """It should return a list of all accounts on the service"""
@@ -238,7 +238,6 @@ class TestAccountService(TestCase):
             f"{BASE_URL}/{account.id}"
         )
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
-
 
     def test_method_not_allowed(self):
         """It should not allow an illegal method call"""
